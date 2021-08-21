@@ -19,10 +19,7 @@ export default {
 
 <style scoped>
 .container {
-  display: flex;
-  align-items: center;
-  max-width: 400px;
-  flex-direction: column;
+  max-width: 320px;
   border-radius: 15px;
   text-align: center;
   padding: 10px;
@@ -36,6 +33,18 @@ export default {
   font-size: 32px;
   font-weight: bold;
   color: #32264d;
-  margin-bottom: 10px;
+  margin: 10px 0 10px 0;
+}
+
+@media screen and (max-width: 420px) {
+  .containerAll {
+    display: flex;
+    justify-content: center;
+  }
+
+  .container {
+    margin: -50px auto;
+    max-width: 300px;
+  }
 }
 </style>

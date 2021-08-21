@@ -5,16 +5,17 @@
       <button @click.prevent="fetchApi">Buscar</button>
     </form>
     <div v-if="data">
-      <h2>{{ data.name }}</h2>
+      <h2 class="city">{{ data.name }}, {{ data.sys.country }}</h2>
       <div class="info">
         <div class="temp">
-          <p>Temperatura</p>
+          <p class="details">Temperatura</p>
           <p class="tempInfo">{{ data.main.temp }}<sup>ºC</sup></p>
           <img :src="require(`@/assets/${icon}.png`)" />
         </div>
         <div class="umidade">
-          <h2>Umidade</h2>
-          <p>{{ data.main.humidity }}<span>%</span></p>
+          <p class="details">Umidade</p>
+          <p class="tempInfo">{{ data.main.humidity }}<span>%</span></p>
+          <img src="../assets/umidade.png" alt="Umidade" />
         </div>
       </div>
       <div class="tempDesc">
@@ -92,5 +93,60 @@ button {
 
 button:hover {
   filter: brightness(0.9);
+}
+
+.city {
+  max-width: 200px;
+  color: #6842c2;
+  font-size: 25px;
+  font-weight: bold;
+  margin: 15px auto;
+}
+
+.details {
+  color: #6842c2;
+  margin-bottom: 5px;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.info img {
+  max-width: 75px;
+  max-height: 75px;
+}
+
+.info .temp,
+.info .umidade {
+  flex: 1;
+  text-align: center;
+}
+
+.tempInfo {
+  color: #32264d;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.tempInfo sup,
+.tempInfo span {
+  font-size: 15px;
+}
+
+.tempDesc {
+  color: #6842c2;
+  text-align: center;
+  font-size: 24px;
+  text-transform: capitalize;
+}
+
+@media screen and (max-width: 420px) {
+  input {
+    width: 150px;
+    font-size: 14px;
+  }
 }
 </style>

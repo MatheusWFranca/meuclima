@@ -2,17 +2,20 @@
   <div>
     <Header />
     <Modal />
+    <Footer />
   </div>
 </template>
 
 <script>
 import Modal from "@/components/Modal.vue";
 import Header from "@/components/Header.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
   components: {
     Header,
     Modal,
+    Footer,
   },
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>
-      Oh não! Uma castrofe aconteceu<br />
+      Oh não! Uma catástrofe aconteceu<br />
       Error 404, digite um valor valido.
     </p>
     <img src="../assets/error.svg" alt="404" />
