@@ -4,24 +4,29 @@
       <input type="text" id="searchInput" v-model="input" />
       <button @click.prevent="fetchApi">Buscar</button>
     </form>
-    <div v-if="data">
-      <h2 class="city">{{ data.name }}, {{ data.sys.country }}</h2>
-      <div class="info">
-        <div class="temp">
-          <p class="details">Temperatura</p>
-          <p class="tempInfo">{{ data.main.temp }}<sup>ºC</sup></p>
-          <img :src="require(`@/assets/${icon}.png`)" />
-        </div>
-        <div class="umidade">
-          <p class="details">Umidade</p>
-          <p class="tempInfo">{{ data.main.humidity }}<span>%</span></p>
-          <img src="../assets/umidade.png" alt="Umidade" />
-        </div>
-      </div>
-      <div class="tempDesc">
-        {{ data.weather[0].description }}
-      </div>
+    <div v-if="loading">
+      <Loading />
     </div>
+    <transition>
+      <div v-if="data">
+        <h2 class="city">{{ data.name }}, {{ data.sys.country }}</h2>
+        <div class="info">
+          <div class="temp">
+            <p class="details">Temperatura</p>
+            <p class="tempInfo">{{ data.main.temp }}<sup>ºC</sup></p>
+            <img :src="require(`@/assets/${icon}.png`)" />
+          </div>
+          <div class="umidade">
+            <p class="details">Umidade</p>
+            <p class="tempInfo">{{ data.main.humidity }}<span>%</span></p>
+            <img src="../assets/umidade.png" alt="Umidade" />
+          </div>
+        </div>
+        <div class="tempDesc">
+          {{ data.weather[0].description }}
+        </div>
+      </div>
+    </transition>
     <div v-if="data === undefined"><Error /></div>
   </div>
 </template>
@@ -39,10 +44,13 @@ export default {
       data: null,
       input: null,
       icon: null,
+      loading: false,
     };
   },
   methods: {
     async fetchApi() {
+      this.loading = true;
+      this.data = null;
       await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${encodeURI(
           this.input
@@ -53,10 +61,14 @@ export default {
         })
         .then((json) => {
           if (json.cod === 200) {
-            this.data = json;
-            this.icon = json.weather[0].icon;
+            setTimeout(() => {
+              this.data = json;
+              this.icon = json.weather[0].icon;
+              this.loading = false;
+            }, 1200);
           } else {
             this.data = undefined;
+            this.loading = false;
           }
         });
     },
@@ -141,6 +153,14 @@ button:hover {
   text-align: center;
   font-size: 24px;
   text-transform: capitalize;
+}
+
+.v-enter {
+  opacity: 0;
+  transform: translate3d(0, -20px, 0);
+}
+.v-enter-active {
+  transition: all 0.3s;
 }
 
 @media screen and (max-width: 420px) {
