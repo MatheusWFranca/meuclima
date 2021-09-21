@@ -1,3 +1,5 @@
+<h1 align="center">Clima Diario</h1>
+
 <p align="center">
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -30,7 +32,7 @@ nela  você pode consultar o clima de qualquer região do mundo. ☃️
 
 ## 📌 Preview do Projeto
 
-https://www.mfranca.dev/projeto/clima
+https://meuclimadiario.netlify.app/
 
 Feito com ♥
 
